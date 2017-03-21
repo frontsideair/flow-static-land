@@ -105,10 +105,10 @@ export function curry(f: Function) { // eslint-disable-line no-redeclare
 
 export const inj = constant
 
-export function map(f: (a: A) => B, fa: Fun<A>): Fun<B> {
-  return compose(f, fa)
+export function map<A, B, C>(f: (a: A) => B, g: (b: B) => C): (a: A) => C {
+  return compose(f, g)
 }
 
-export function ap(f, g) {
+export function ap<A, B, C>(f: (a: A) => (b: B) => C, g: (a: A) => B): (a: A) => C {
   return x => f(x)(g(x))
 }
