@@ -102,3 +102,13 @@ function curried(f, length, acc) {
 export function curry(f: Function) { // eslint-disable-line no-redeclare
   return curried(f, f.length, [])
 }
+
+export const inj = constant
+
+export function map(f: (a: A) => B, fa: Fun<A>): Fun<B> {
+  return compose(f, fa)
+}
+
+export function ap(f, g) {
+  return x => f(x)(g(x))
+}
